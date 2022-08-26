@@ -25,7 +25,22 @@ function createSnake(){
 function initGame(){
     createBG()
     createSnake()
-    let snakeX = snake[0].X
+    let snakeX = snake[0].X;
+    let snakeY = snake[0].y;
+    if(direction == 'right') snakeX += box;
+    if(direction == 'left') snakeX -= box;
+    if(direcion == 'up') snakeY -= box;
+    if(direcion == 'down') snakeY += box;
+
+    snake.pop();
+
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    snake.unshift(newHead);
+
 }
 
 let game = setInterval(initGame,100)
