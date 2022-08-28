@@ -14,50 +14,57 @@ let food = {
 };
 
 function createBG() {
-    context.fillStyle = "lightgreen";
+    context.fillStyle = "#9400D3";
     context.fillRect(0, 0, 16 * box, 16 * box);
 }
 
 function createSnake() {
     for (i = 0; i < snake.length; i++) {
-        context.fillStyle = 'green';
+        context.fillStyle = '#800080';
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
 }
 
-function drawFood(){
+function drawFood() {
     context.fillStyle = "red";
     context.fillRect(food.x, food.y, box, box)
 }
 
+var clicks = 0;
 
+function onClick() {
+    clicks += 1;
+    document.getElementById("placar-num").innerHTML = clicks
+};
 
-document.addEventListener("keydown",update)
+document.addEventListener("keydown", update)
 
-function update(event){
-    if(event.keyCode == 37 && direction != "right") direction = "left";
-    if(event.keyCode == 38 && direction != "down") direction = "up";
-    if(event.keyCode == 39 && direction != "left") direction = "right";
-    if(event.keyCode == 40 && direction != "up") direction = "down";   
+function update(event) {
+    if (event.keyCode == 37 && direction != "right") direction = "left";
+    if (event.keyCode == 38 && direction != "down") direction = "up";
+    if (event.keyCode == 39 && direction != "left") direction = "right";
+    if (event.keyCode == 40 && direction != "up") direction = "down";
 }
 
 function initGame() {
-    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
-    if(snake[0].x < 0 && direction == 'left') snake[0].x = 16 * box;
-    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-    if(snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box;
+   
+    if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+    if (snake[0].x < 0 && direction == 'left') snake[0].x = 16 * box;
+    if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+    if (snake[0].y < 0 && direction == 'up') snake[0].y = 16 * box;
 
-    for(let i = 1; i < snake.length; i++){
-        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             clearInterval(game);
-            if(confirm('Fim de jogo, clique em ok para prosseguir')){
+            if (confirm('Fim de jogo, clique em ok para reiniciar e dê o seu melhor 😼')) {
                 location.reload()
             }
-            else{
-                alert('Jogo encerrado')
+            else {
+                alert('Fim de jogo , que pena :(')
             }
         }
     }
+
 
     createBG();
     createSnake();
@@ -70,12 +77,14 @@ function initGame() {
     if (direction == "up") snakeY -= box;
     if (direction == "down") snakeY += box;
 
-    if(snakeX != food.x || snakeY != food.y){
+    if (snakeX != food.x || snakeY != food.y) {
         snake.pop();
     }
-    else{
+    else {
         food.x = Math.floor(Math.random() * 15 + 1) * box;
-        food.y =  Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 + 1) * box;
+        onClick();
+        
     }
 
     let newHead = {
@@ -86,27 +95,12 @@ function initGame() {
     snake.unshift(newHead);
 
 }
-var game;
 
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.textContent = minutes + ":" + seconds;
-        if (--timer < 0) {
-            timer = duration;
-        }
-       if(timer == 0){
-        game = setInterval(initGame, 100);
-         document.querySelector('#timer').setAttribute('style','visibility:hidden')
-        }
-    }, 1000);
-}
-window.onload = function () {
-    var duration = 60 * 0.3; // Converter para segundos
-        display = document.querySelector('#timer'); 
-        startTimer(duration, display); 
-};
+let startButton = document.getElementById("initGame");
+var game;
+startButton.addEventListener("click", function () {
+    startButton.setAttribute('style','display:none');
+    
+    game = setInterval(initGame, 100);
+})
+

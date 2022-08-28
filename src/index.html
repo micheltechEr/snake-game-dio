@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Snake game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
+
 <body>
-    <h>Aguarde o inicio do jogo</h>
-    <h3 id="timer"></h3>
-    <canvas id="snake" width="512" height="512"></canvas>   
+    <h1 class="titleGame">Clique no botão para iniciar o jogo</h1>
+    <h3 class="titleGame subtitle">🐍 The Sssnake Game 🐍</h3>
+    <div class="containerTitle">
+        <p id="placar" class="placar">Pontuação : 
+            <span id="placar-num" class="placar"></span>
+        </p>
+        <a href="#" id="initGame">iniciar</a>
+    </div>
+    <div class="containerGame">
+        <canvas id="snake" width="500" height="500"></canvas>
+    </div>
 </body>
+
 </html>

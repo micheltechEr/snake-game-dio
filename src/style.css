@@ -1,0 +1,59 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #4B0082;
+    overflow: hidden;
+}
+
+.titleGame {
+    font-family: "Electrolize";
+    text-align: center;
+    margin: 2% 0% 2% 0%;
+}
+
+.titleGame.subtitle{
+    color: #FFF;
+}
+
+.containerTitle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.placar {
+    font-family: "Electrolize";
+    color: #FFF;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+a#initGame {
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #8A2BE2;
+    padding: 15px;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 14px;
+    font-family: "Electrolize";
+    width: 10%;
+    text-align: center;
+    transition: background 1s;
+}
+
+a#initGame:hover{
+    background: #9370DB; 
+}
+ 
+.containerGame {
+    display: flex;
+    justify-content: center;
+}
